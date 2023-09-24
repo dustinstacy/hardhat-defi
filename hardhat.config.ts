@@ -9,7 +9,9 @@ const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || 'key'
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || 'key'
 
 const config: HardhatUserConfig = {
-    solidity: '0.8.19',
+    solidity: {
+        compilers: [{ version: '0.8.19' }, { version: '0.4.19' }],
+    },
     defaultNetwork: 'hardhat',
     networks: {
         hardhat: {
