@@ -11,7 +11,7 @@ const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL || 'key'
 
 const config: HardhatUserConfig = {
     solidity: {
-        compilers: [{ version: '0.8.19' }, { version: '0.4.19' }],
+        compilers: [{ version: '0.8.19' }, { version: '0.4.19' }, { version: '0.6.12' }],
     },
     defaultNetwork: 'hardhat',
     networks: {
