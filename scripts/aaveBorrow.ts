@@ -1,6 +1,7 @@
 import { ethers, getNamedAccounts } from 'hardhat'
 import { AMOUNT, getWeth } from './getWeth'
 import { AddressLike, BigNumberish } from 'ethers'
+import { ILendingPool } from '../typechain-types'
 
 const main = async () => {
     await getWeth()
@@ -12,6 +13,16 @@ const main = async () => {
     console.log('Depositing...')
     await lendingPool.deposit(wethTokenAddress, AMOUNT, deployer, 0)
     console.log('Deposited')
+    let { availableBorrowsETH, totalDebtETH } = await getBorrowUserData(lendingPool, deployer)
+}
+
+const getBorrowUserData = async (lendingPool: ILendingPool, account: string) => {
+    const { totalCollateralETH, totalDebtETH, availableBorrowsETH } =
+        await lendingPool.getUserAccountData(account)
+    console.log(`You have ${totalCollateralETH} worth of ETH deposited.`)
+    console.log(`You have ${totalDebtETH} worth of ETH borrowed.`)
+    console.log(`You can borrow ${availableBorrowsETH} ETH.`)
+    return { availableBorrowsETH, totalDebtETH }
 }
 
 const getLendingPool = async () => {
