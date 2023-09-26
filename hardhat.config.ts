@@ -7,6 +7,7 @@ const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL || 'https://eth-sepolia'
 const PRIVATE_KEY = process.env.PRIVATE_KEY || '0xkey'
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || 'key'
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || 'key'
+const MAINNET_RPC_URL = process.env.MAINNET_RPC_URL || 'key'
 
 const config: HardhatUserConfig = {
     solidity: {
@@ -16,6 +17,9 @@ const config: HardhatUserConfig = {
     networks: {
         hardhat: {
             chainId: 31337,
+            forking: {
+                url: MAINNET_RPC_URL,
+            },
         },
         localhost: {
             url: 'http://127.0.0.1:8545/',
