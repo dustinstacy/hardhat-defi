@@ -1,6 +1,6 @@
 import { ethers, getNamedAccounts } from 'hardhat'
 
-const AMOUNT = ethers.parseEther('0.02')
+export const AMOUNT = ethers.parseEther('0.02')
 
 export const getWeth = async () => {
     const { deployer } = await getNamedAccounts()
